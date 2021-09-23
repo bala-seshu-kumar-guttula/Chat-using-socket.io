@@ -14,6 +14,7 @@ export class ChatService {
 
   constructor(private http: HttpClient) { }
 
+  // For establishing a connection with socket.io
   async establishConnection(roomId: string): Promise<any> {
     try {
       this.socket = await io("http://localhost:3000", {
@@ -26,10 +27,12 @@ export class ChatService {
     }
   }
 
+  // send message from client using emit
   emitMessage(message: any) {
     this.socket.emit('message', message);
   }
 
+  // listening to the broadcast from backend
   listenToBroadcast(): Observable<any>{
     let messageData = "";
     this.socket.on('message', (message) => {

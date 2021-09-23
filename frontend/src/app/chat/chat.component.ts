@@ -16,23 +16,17 @@ export class ChatComponent implements OnInit {
   constructor(private chatService: ChatService) { }
 
   ngOnInit(): void {
+    // Establising a connection with roomID
     this.chatService.establishConnection("123").then(() => {
+      // listening to the messages from backend
       const text = this.chatService.listenToBroadcast().subscribe((text) => {
         this.chat.push(text);
         console.log("from backend", this.chat);
       });
-      // if(text.length > 0) {
-      //   const message = {
-      //     text: text,
-      //     source: "received",
-      //     timestamp: moment().unix()
-      //   };
-
-      //   console.log("from backend", message);
-      // }
     });
   }
 
+  // Send message from a client
   sendMessage() {
     console.log("message", this.messageFormControl.value);
     const message = {
