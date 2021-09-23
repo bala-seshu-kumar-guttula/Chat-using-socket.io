@@ -1,0 +1,58 @@
+.parent-container {
+    height: 100%;
+    // overflow: hidden;
+}
+
+.chat-messages-container {
+    height: 73vh;
+    padding: 16px;
+    background: #263238;
+    overflow-y: scroll;
+}
+
+.no-messages-container {
+    height: 78vh;
+    padding: 16px;
+    background: #263238;
+    overflow-y: scroll;
+    color: white;
+}
+
+.chatbox-container {
+    padding: 10px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    // background: #c1d5e0;
+}
+
+.chatbox-props {
+    width: 95%;
+}
+
+.send-button-props {
+    margin-bottom: 18px;
+    background: #34515e;
+    color: white;
+}
+
+.toolbar-props {
+    background: #34515e;
+    color: white;
+}
+
+.message-container {
+    padding: 7px;
+    border-radius: 10px;
+    background: #009688;
+    color: white;
+    // min-width: min-content;
+    max-width: fit-content;
+    margin: 10px;
+}
+
+.time-font {
+    margin-top: 4px;
+    font-size: x-small;
+}

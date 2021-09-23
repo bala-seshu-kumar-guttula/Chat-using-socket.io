@@ -1,0 +1,41 @@
+<div fxLayout="column" class="parent-container">
+    <mat-toolbar class="toolbar-props">
+        <span>Chat using Socket.io</span>
+    </mat-toolbar>
+
+    <div fxLayout="column" fxLayoutAlign="center center" *ngIf="chat && chat.length === 0" class="no-messages-container">
+        <div class="mat-title">No Message found</div>
+    </div>
+
+    <div *ngIf="chat && chat.length > 0" class="chat-messages-container" >
+        <div fxLayout="column" fxLayoutGap="25px" *ngFor="let message of chat">
+            <!-- recevied message -->
+            <div fxLayout="row" fxLayoutAlign="start center" *ngIf="message?.source === 'received'">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="message-container">
+                    <div class="mat-body-1">{{message.text}}</div>
+                    <div class="mat-caption time-font">{{message.timestamp | time}}</div>
+                </div>
+            </div>
+    
+            <!-- sent message -->
+            <div fxLayout="row" fxLayoutAlign="end center" *ngIf="message?.source === 'origin'">
+                <div fxLayout="row" fxLayoutAlign="start center" fxLayoutGap="10px" class="message-container">
+                    <div class="mat-body-1">{{message.text}}</div>
+                    <div class="mat-caption time-font">{{message.timestamp | time}}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="7px" class="chatbox-container">
+        <mat-form-field appearance="outline" class="chatbox-props">
+            <mat-label>Enter message</mat-label>
+            <textarea matInput [formControl]="messageFormControl"></textarea>
+            <mat-error *ngIf="messageFormControl.hasError('required')">Required</mat-error>
+        </mat-form-field>
+
+        <button mat-fab class="send-button-props" [disabled]="messageFormControl.invalid" (click)="sendMessage()"><mat-icon>send</mat-icon></button>
+    </div>
+</div>
