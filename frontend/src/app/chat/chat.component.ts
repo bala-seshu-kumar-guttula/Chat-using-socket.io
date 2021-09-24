@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import * as moment from 'moment';
 import { ChatService } from '../chat.service';
+import { Message } from './chat.model';
 
 @Component({
   selector: 'app-chat',
@@ -11,7 +12,7 @@ import { ChatService } from '../chat.service';
 export class ChatComponent implements OnInit {
 
   messageFormControl = new FormControl('', [Validators.required]);
-  chat: any[] = [];
+  chat: Message[] = [];
 
   constructor(private chatService: ChatService) { }
 
@@ -19,17 +20,15 @@ export class ChatComponent implements OnInit {
     // Establising a connection with roomID
     this.chatService.establishConnection("123").then(() => {
       // listening to the messages from backend
-      const text = this.chatService.listenToBroadcast().subscribe((text) => {
+      this.chatService.listenToBroadcast().subscribe((text) => {
         this.chat.push(text);
-        console.log("from backend", this.chat);
       });
     });
   }
 
   // Send message from a client
   sendMessage() {
-    console.log("message", this.messageFormControl.value);
-    const message = {
+    const message: Message = {
       text: this.messageFormControl.value.trim(),
       source: "origin",
       timestamp: moment().unix()

@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { io, Socket } from 'socket.io-client';
+import { Message } from './chat/chat.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +9,10 @@ import { io, Socket } from 'socket.io-client';
 export class ChatService {
 
   socket!: Socket;
-  message = new Subject<string>();
+  message = new Subject<Message>();
   message$  = this.message.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor() { }
 
   // For establishing a connection with socket.io
   async establishConnection(roomId: string): Promise<any> {
@@ -28,19 +28,14 @@ export class ChatService {
   }
 
   // send message from client using emit
-  emitMessage(message: any) {
+  emitMessage(message: Message) {
     this.socket.emit('message', message);
   }
 
   // listening to the broadcast from backend
-  listenToBroadcast(): Observable<any>{
-    let messageData = "";
+  listenToBroadcast(): Observable<Message>{
     this.socket.on('message', (message) => {
-      // console.log("message from backend", message);
       this.message.next(message);
-      // return message;
-      // messageData = message;
-      // return message;
     });
     return this.message$;
   }
