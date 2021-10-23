@@ -5,10 +5,6 @@ const expressServer = http.createServer(app);
 const { Server } = require("socket.io").listen(expressServer);
 const path=require('path');
 
-expressServer.listen(process.env.PORT || 3000,()=>{console.log('server is running on port number 3000')});
-
-app.use(express.static(path.join(__dirname,'../dist/task/')));
-
 // linking socket server to express server
 const io = new Server(expressServer, {
   cors: {
@@ -36,6 +32,11 @@ app.get('/', (req, res) => {
     app: "chat-backend"
   });
 });
+
+expressServer.listen(process.env.PORT || 3000,()=>{console.log('server is running on port number 3000')});
+
+app.use(express.static(path.join(__dirname,'../dist/task/')));
+
 
 // Server listening
 // expressServer.listen(3000, () => {
