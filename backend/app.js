@@ -27,15 +27,19 @@ io.on('connection', (socket) => {
 });
 
 // for testing purpose for the backend
-app.get('/', (req, res) => {
-  res.send({
-    app: "chat-backend"
+// app.get('/', (req, res) => {
+//   res.send({
+//     app: "chat-backend"
+//   });
+// });
+app.use(express.static(path.join(__dirname,'../dist/task/')));
+app.get('/*', function(req,res) {
+    
+  res.sendFile(path.join(__dirname+'/dist/task/index.html'));
   });
-});
 
 expressServer.listen(process.env.PORT || 3000,()=>{console.log('server is running on port number 3000')});
 
-app.use(express.static(path.join(__dirname,'../dist/task/')));
 
 
 // Server listening
