@@ -4,7 +4,7 @@
     </mat-toolbar>
 
     <div fxLayout="column" fxLayoutAlign="center center" *ngIf="chat && chat.length === 0" class="no-messages-container">
-        <div class="mat-title">No Message found</div>
+        <div class="mat-title">No Messages found</div>
     </div>
 
     <div *ngIf="chat && chat.length > 0" class="chat-messages-container" >
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <mat-divider></mat-divider>
+    <!-- <mat-divider></mat-divider> -->
 
     <div fxLayout="row" fxLayoutAlign="space-between center" fxLayoutGap="7px" class="chatbox-container">
         <mat-form-field appearance="outline" class="chatbox-props">

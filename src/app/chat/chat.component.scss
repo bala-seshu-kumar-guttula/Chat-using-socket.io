@@ -1,6 +1,7 @@
 .parent-container {
     height: 100%;
     // overflow: hidden;
+    // background: #cfd8dc;
 }
 
 .chat-messages-container {
@@ -8,14 +9,15 @@
     padding: 16px;
     // background: #263238; 
     overflow-y: scroll;
+    // background: #cfd8dc;
 }
 
 .no-messages-container {
     height: 75vh;
     padding: 16px;
-    background: #263238;
+    // background: #263238;
     overflow-y: scroll;
-    color: white;
+    // color: white;
 }
 
 .chatbox-container {
@@ -24,7 +26,7 @@
     left: 0;
     bottom: -25px;
     width: 100%;
-    // background: #c1d5e0;
+    background: #c1d5e0;
 }
 
 .chatbox-props {
