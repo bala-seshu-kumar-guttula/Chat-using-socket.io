@@ -41,4 +41,4 @@ app.get('/', (req, res) => {
 
 expressServer.listen(process.env.PORT || 3000,()=>{console.log('server is running on port number 3000')});
 
-app.use(express.static(path.join(__dirname,'../frontend/dist')));
+app.use(express.static(path.join(__dirname,'../dist')));
