@@ -17,7 +17,7 @@ export class ChatService {
   // For establishing a connection with socket.io
   async establishConnection(roomId: string): Promise<any> {
     try {
-      this.socket = await io("http://localhost:3000", {
+      this.socket = await io("", {
         query: {
           roomId
         }

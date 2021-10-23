@@ -2,9 +2,12 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const expressServer = http.createServer(app);
-const { Server } = require("socket.io");
+const { Server } = require("socket.io").listen(expressServer);
 const path=require('path');
 
+expressServer.listen(process.env.PORT || 3000,()=>{console.log('server is running on port number 3000')});
+
+app.use(express.static(path.join(__dirname,'../dist/task/')));
 
 // linking socket server to express server
 const io = new Server(expressServer, {
@@ -39,6 +42,4 @@ app.get('/', (req, res) => {
 //   console.log('listening on *:3000');
 // });
 
-expressServer.listen(process.env.PORT || 3000,()=>{console.log('server is running on port number 3000')});
-
-app.use(express.static(path.join(__dirname,'../dist')));
+// app.use('socket',io);
