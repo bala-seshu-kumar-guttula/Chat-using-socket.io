@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const http = require('http');
 const expressServer = http.createServer(app);
-const { Server } = require("socket.io").listen(expressServer);
+const { Server } = require("socket.io");
 const path=require('path');
 
 // linking socket server to express server
@@ -10,7 +10,7 @@ const io = new Server(expressServer, {
   cors: {
     origin: '*',
   }
-});
+}).listen(expressServer);
 
 // establising a connection for chat
 io.on('connection', (socket) => {
